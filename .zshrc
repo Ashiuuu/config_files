@@ -190,6 +190,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+alias lla='ls -la'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
@@ -261,4 +262,8 @@ function notes() {
 
 export PATH="$PATH:$HOME/.local/bin/"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
-source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/user/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

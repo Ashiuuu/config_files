@@ -264,6 +264,14 @@ export PATH="$PATH:$HOME/.local/bin/"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export LESS_TERMCAP_mb=$'\E[01;31m'.   # debut de blink !
+export LESS_TERMCAP_md=$'\E[01;31m'.   # debut de gras
+export LESS_TERMCAP_me=$'\E[0m'   # fin
+export LESS_TERMCAP_so=$'\E[01;44;33m' # début de la ligne d'état
+export LESS_TERMCAP_se=$'\E[0m'        # fin
+export LESS_TERMCAP_us=$'\E[01;32m'    # début de souligné
+export LESS_TERMCAP_ue=$'\E[0m'        # fin
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

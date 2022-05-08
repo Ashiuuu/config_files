@@ -82,3 +82,6 @@ set listchars=tab:▸\ ,eol:¬
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 colorscheme deus
+
+" Copy into system clipboard
+set clipboard=unnamedplus

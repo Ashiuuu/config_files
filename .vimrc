@@ -85,3 +85,6 @@ colorscheme deus
 
 " Copy into system clipboard
 set clipboard=unnamedplus
+
+" Display line numbers
+set number

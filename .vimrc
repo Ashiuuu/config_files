@@ -25,7 +25,7 @@ set ruler
 set encoding=utf-8
 
 " Whitespace
-set wrap
+set nowrap
 set textwidth=79
 set formatoptions=tcqrn1
 set tabstop=4
@@ -35,7 +35,7 @@ set expandtab
 set noshiftround
 
 " Cursor motion
-set scrolloff=3
+set scrolloff=8
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
@@ -88,3 +88,16 @@ set clipboard=unnamedplus
 
 " Display line numbers
 set number
+
+" Add space for signs on left
+set signcolumn=yes
+
+" Set window title to vim title
+set title
+
+" Use terminal colors
+set termguicolors
+
+" Reselect visual aread when identing in visual mode
+vnoremap < <gv
+vnoremap > >gv

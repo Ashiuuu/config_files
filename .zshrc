@@ -207,59 +207,6 @@ alias v="checkvim"
 # Auto-suggestions based on history in .zsh_history
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Functions
-function mkcd() {
-    mkdir $1 && cd $1
-}
-
-function mkc() {
-    echo "#include <stdio.h>" >> $1
-    echo "" >> $1
-    echo "int main(void)" >> $1
-    echo "{" >> $1
-    echo "}" >> $1
-    vim $1
-}
-
-function checkvim() {
-    extension=$(echo $1 | cut -d "." -f2)
-    if [ -e ./$1 ]; then
-        vim $1
-    elif [ $extension = c ]; then
-        mkc $1
-    else
-        vim $1
-    fi
-}
-
-# Assuming VS Code && Marp plugin are installed
-function notes() {
-        mkdir "$1"
-        cd "$1"
-        mkdir .vscode
-        echo "{
-    \"markdown.marp.themes\": [
-      \"a4-light.css\",
-      \"a4-dark.css\"
-    ]
-}" >> .vscode/settings.json
-        echo "---" >> "$1".md
-        echo "marp: true" >> "$1".md
-        echo "theme: a4-dark" >> "$1".md
-        echo "paginate: true" >> "$1".md
-        echo "---" >> "$1".md
-        echo "" >> "$1".md
-        date=$(date)
-        echo "<!-- $date -->" >> "$1".md
-        echo "" >> "$1".md
-        echo "# $1" >> "$1".md
-        wget -q "https://raw.githubusercontent.com/stanfrbd/A4-marp/main/a4-light.css"
-        wget -q "https://raw.githubusercontent.com/stanfrbd/A4-marp/main/a4-dark.css"
-        wget -q "https://raw.githubusercontent.com/stanfrbd/A4-marp/main/atom-one-dark.css"
-        code .
-        cd ..
-}
-
 export PATH="$PATH:$HOME/.local/bin/"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

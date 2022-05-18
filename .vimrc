@@ -7,7 +7,7 @@ filetype off
 " TODO: Load plugins here (pathogen or vundle)
 
 " Turn on syntax highlighting
-syntax on
+" syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
@@ -81,8 +81,6 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-colorscheme deus
-
 " Copy into system clipboard
 set clipboard=unnamedplus
 
@@ -94,9 +92,6 @@ set signcolumn=yes
 
 " Set window title to vim title
 set title
-
-" Use terminal colors
-set termguicolors
 
 " Reselect visual aread when identing in visual mode
 vnoremap < <gv

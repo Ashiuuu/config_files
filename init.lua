@@ -41,6 +41,9 @@ vim.pack.add({
 
 require("oil").setup()
 
+-- Set git directory as pwd
+vim.api.nvim_create_autocmd('BufEnter', { command = 'Gcd' })
+
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 

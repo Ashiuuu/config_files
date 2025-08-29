@@ -20,6 +20,8 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/tpope/vim-fugitive",
+	"https://github.com/nvim-lua/plenary.nvim",
+	-- "https://github.com/nvim-telescope/telescope.nvim",
 })
 
 require("oil").setup()

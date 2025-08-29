@@ -19,15 +19,16 @@ vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
 vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
 vim.keymap.set('n', '<leader>gc', function()
 	local buf = vim.api.nvim_create_buf(true, true)
-	vim.api.nvim_create_autocmd('BufLeave', { buffer = buf, callback = function(ev)
-		local msg = table.concat(vim.api.nvim_buf_get_lines(ev.buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
-		vim.api.nvim_echo({{string.format('dir: %s', vim.fn.getcwd())}}, false, {})
-		vim.cmd(string.format("Git commit -m '%s'", msg))
-	end})
-	local opts = {relative='cursor', width=30, height=1, col=0, row=1, anchor='NW', style='minimal', border={"╔", "═" ,"╗", "║", "╝", "═", "╚", "║"}, title="Commit Message", title_pos="center"}
+	vim.api.nvim_create_autocmd('BufLeave', {
+		buffer = buf,
+		callback = function(ev)
+			local msg = table.concat(vim.api.nvim_buf_get_lines(ev.buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
+			vim.cmd(string.format("Git commit -m '%s'", msg))
+		end
+	})
+	local opts = { relative = 'cursor', width = 30, height = 1, col = 0, row = 1, anchor = 'NW', style = 'minimal', border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" }, title =
+	"Commit Message", title_pos = "center" }
 	local win = vim.api.nvim_open_win(buf, 0, opts)
-	 
-	--vim.cmd('Git commit')
 end)
 
 vim.pack.add({
@@ -35,11 +36,13 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/tpope/vim-fugitive",
-	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/mason-org/mason.nvim",
+	-- "https://github.com/nvim-lua/plenary.nvim",
 	-- "https://github.com/nvim-telescope/telescope.nvim",
 })
 
 require("oil").setup()
+require("mason").setup()
 
 -- Set git directory as pwd
 vim.api.nvim_create_autocmd('BufReadPost', { command = 'Gcd' })
@@ -47,4 +50,14 @@ vim.api.nvim_create_autocmd('BufReadPost', { command = 'Gcd' })
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
-vim.lsp.enable({ "lua_ls", "lemminx" })
+vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
+-- fix the diagnostics for vim global variable
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true)
+			}
+		}
+	}
+})

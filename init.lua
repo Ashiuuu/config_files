@@ -14,6 +14,12 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update)
 vim.keymap.set('n', '<leader>gs', function()
 	vim.cmd('Git status')
 end)
+vim.keymap.set('n', '<leader>gc', function()
+	vim.cmd('Git commit')
+end)
+vim.keymap.set('n', '<leader>gp', function()
+	vim.cmd('Git push')
+end)
 
 vim.pack.add({
 	"https://github.com/Mofiqul/vscode.nvim",

@@ -26,8 +26,19 @@ vim.keymap.set('n', '<leader>gc', function()
 			vim.cmd(string.format("Git commit -m '%s'", msg))
 		end
 	})
-	local opts = { relative = 'cursor', width = 30, height = 1, col = 0, row = 1, anchor = 'NW', style = 'minimal', border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" }, title =
-	"Commit Message", title_pos = "center" }
+	local opts = {
+		relative = 'cursor',
+		width = 30,
+		height = 1,
+		col = 0,
+		row = 1,
+		anchor = 'NW',
+		style = 'minimal',
+		border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" },
+		title =
+		"Commit Message",
+		title_pos = "center"
+	}
 	local win = vim.api.nvim_open_win(buf, 0, opts)
 end)
 
@@ -51,6 +62,7 @@ vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
 vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
+vim.lsp.inlay_hint.enable()
 -- fix the diagnostics for vim global variable
 vim.lsp.config("lua_ls", {
 	settings = {

@@ -11,6 +11,7 @@ vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<leader>pu', vim.pack.update)
 
 -- Git fugitive shortcuts
@@ -19,13 +20,13 @@ vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
 vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
 vim.keymap.set('n', '<leader>gc', function()
 	local buf = vim.api.nvim_create_buf(true, true)
-	vim.api.nvim_create_autocmd('BufLeave', {
-		buffer = buf,
-		callback = function(ev)
-			local msg = table.concat(vim.api.nvim_buf_get_lines(ev.buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
-			vim.cmd(string.format("Git commit -m '%s'", msg))
-		end
-	})
+	--vim.api.nvim_create_autocmd('BufLeave', {
+	--	buffer = buf,
+	--	callback = function(ev)
+	--		local msg = table.concat(vim.api.nvim_buf_get_lines(ev.buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
+	--		vim.cmd(string.format("Git commit -m '%s'", msg))
+	--	end
+	--})
 	local opts = {
 		relative = 'cursor',
 		width = 30,
@@ -40,6 +41,12 @@ vim.keymap.set('n', '<leader>gc', function()
 		title_pos = "center"
 	}
 	local win = vim.api.nvim_open_win(buf, 0, opts)
+	vim.keymap.set('i', '<CR>', function()
+		local msg = table.concat(vim.api.nvim_buf_get_lines(buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
+		vim.cmd('stopinsert')
+		vim.api.nvim_win_close(win, true)
+		vim.cmd(string.format("Git commit -m '%s'", msg))
+	end, { buffer = buf} )
 end)
 
 vim.pack.add({

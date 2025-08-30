@@ -20,13 +20,6 @@ vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
 vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
 vim.keymap.set('n', '<leader>gc', function()
 	local buf = vim.api.nvim_create_buf(true, true)
-	--vim.api.nvim_create_autocmd('BufLeave', {
-	--	buffer = buf,
-	--	callback = function(ev)
-	--		local msg = table.concat(vim.api.nvim_buf_get_lines(ev.buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
-	--		vim.cmd(string.format("Git commit -m '%s'", msg))
-	--	end
-	--})
 	local opts = {
 		relative = 'cursor',
 		width = 30,

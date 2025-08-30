@@ -15,6 +15,9 @@ vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<leader>pu', vim.pack.update)
 
+-- rust maps
+vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
+
 -- Git fugitive shortcuts
 vim.keymap.set('n', '<leader>gg', ':Git<CR>')
 vim.keymap.set('n', '<leader>gs', ':Git status<CR>')

@@ -19,9 +19,6 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update)
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
 
 -- Git fugitive shortcuts
-vim.keymap.set('n', '<leader>gg', ':Git<CR>')
-vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
-vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
 vim.keymap.set('n', '<leader>gc', function()
 	local buf = vim.api.nvim_create_buf(true, true)
 	local opts = {
@@ -44,6 +41,7 @@ vim.keymap.set('n', '<leader>gc', function()
 		vim.api.nvim_win_close(win, true)
 		vim.cmd(string.format("Git commit -m '%s'", msg))
 	end, { buffer = buf} )
+	vim.api.nvim_input('i')
 end)
 
 vim.pack.add({
@@ -52,12 +50,23 @@ vim.pack.add({
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/tpope/vim-fugitive",
 	"https://github.com/mason-org/mason.nvim",
-	-- "https://github.com/nvim-lua/plenary.nvim",
-	-- "https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-mini/mini.pick",
 })
 
 require("oil").setup()
 require("mason").setup()
+require("mini.pick").setup()
+
+-- ============================
+-- Plugin keymaps
+
+-- fugitive
+vim.keymap.set('n', '<leader>gg', ':Git<CR>')
+vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
+vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
+
+-- mini.pick
+vim.keymap.set('n', '<leader>pf', ':Pick files<CR>')
 
 -- Set git directory as pwd
 vim.api.nvim_create_autocmd('BufReadPost', { command = 'Glcd' })

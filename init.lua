@@ -19,30 +19,6 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update)
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
 
 -- Git fugitive shortcuts
-vim.keymap.set('n', '<leader>gc', function()
-	local buf = vim.api.nvim_create_buf(true, true)
-	local opts = {
-		relative = 'cursor',
-		width = 30,
-		height = 1,
-		col = 0,
-		row = 1,
-		anchor = 'NW',
-		style = 'minimal',
-		border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" },
-		title =
-		"Commit Message",
-		title_pos = "center"
-	}
-	local win = vim.api.nvim_open_win(buf, 0, opts)
-	vim.keymap.set('i', '<CR>', function()
-		local msg = table.concat(vim.api.nvim_buf_get_lines(buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
-		vim.cmd('stopinsert')
-		vim.api.nvim_win_close(win, true)
-		vim.cmd(string.format("Git commit -m '%s'", msg))
-	end, { buffer = buf} )
-	vim.api.nvim_input('i')
-end)
 
 vim.pack.add({
 	"https://github.com/Mofiqul/vscode.nvim",
@@ -64,12 +40,34 @@ require("mini.pick").setup()
 vim.keymap.set('n', '<leader>gg', ':Git<CR>')
 vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
 vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
+vim.keymap.set('n', '<leader>gi', ':Gcd<CR>')
+vim.keymap.set('n', '<leader>gc', function()
+	local buf = vim.api.nvim_create_buf(true, true)
+	local opts = {
+		relative = 'cursor',
+		width = 30,
+		height = 1,
+		col = 0,
+		row = 1,
+		anchor = 'NW',
+		style = 'minimal',
+		border = { "╔", "═", "╗", "║", "╝", "═", "╚", "║" },
+		title =
+		"Commit Message",
+		title_pos = "center"
+	}
+	local win = vim.api.nvim_open_win(buf, 0, opts)
+	vim.keymap.set('i', '<CR>', function()
+		local msg = table.concat(vim.api.nvim_buf_get_lines(buf, 0, vim.api.nvim_buf_line_count(0), false), "\n")
+		vim.cmd('stopinsert')
+		vim.api.nvim_win_close(win, true)
+		vim.cmd(string.format("Git commit -m '%s'", msg))
+	end, { buffer = buf })
+	vim.api.nvim_input('i')
+end)
 
 -- mini.pick
 vim.keymap.set('n', '<leader>pf', ':Pick files<CR>')
-
--- Set git directory as pwd
-vim.api.nvim_create_autocmd('BufReadPost', { command = 'Glcd' })
 
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")

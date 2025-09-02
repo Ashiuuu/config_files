@@ -45,6 +45,13 @@ require("mini.extra").setup()
 -- ============================
 -- Plugin keymaps
 
+-- Oil
+vim.keymap.set('n', '<leader>oo', ':Oil<CR>')
+vim.keymap.set('n', '<leader>os', function()
+	vim.cmd('vsplit | wincmd l | vertical resize -10')
+	require("oil").open()
+end)
+
 -- fugitive
 vim.keymap.set('n', '<leader>gg', ':Git<CR>')
 vim.keymap.set('n', '<leader>ga', ':Git add *<CR>')

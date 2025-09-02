@@ -84,6 +84,7 @@ vim.cmd("colorscheme vscode")
 
 vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
 vim.lsp.inlay_hint.enable()
+
 -- fix the diagnostics for vim global variable
 vim.lsp.config("lua_ls", {
 	settings = {

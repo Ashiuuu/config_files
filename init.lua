@@ -18,8 +18,6 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update)
 -- rust maps
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
 
--- Git fugitive shortcuts
-
 vim.pack.add({
 	"https://github.com/Mofiqul/vscode.nvim",
 	"https://github.com/neovim/nvim-lspconfig",
@@ -38,6 +36,7 @@ require("mini.pick").setup()
 
 -- fugitive
 vim.keymap.set('n', '<leader>gg', ':Git<CR>')
+vim.keymap.set('n', '<leader>ga', ':Git add *<CR>')
 vim.keymap.set('n', '<leader>gs', ':Git status<CR>')
 vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
 vim.keymap.set('n', '<leader>gi', ':Gcd<CR>')

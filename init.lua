@@ -14,6 +14,15 @@ vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>ls', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<leader>pu', vim.pack.update)
+-- Remove all inactive plugins
+vim.keymap.set('n', '<leader>pr', function()
+	local plugins = vim.pack.get()
+	for k, v in ipairs(plugins) do
+		if v.active == "false" then
+			vim.pack.del(v.spec.name)
+		end
+	end
+end)
 
 -- rust maps
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
@@ -25,11 +34,13 @@ vim.pack.add({
 	"https://github.com/tpope/vim-fugitive",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/nvim-mini/mini.pick",
+	"https://github.com/nvim-mini/mini.extra",
 })
 
 require("oil").setup()
 require("mason").setup()
 require("mini.pick").setup()
+require("mini.extra").setup()
 
 -- ============================
 -- Plugin keymaps

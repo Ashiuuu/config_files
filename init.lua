@@ -103,6 +103,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 vim.cmd("set completeopt+=noselect")
 
+-- inline diagnostics
+vim.diagnostic.config({ virtual_text = true })
+
 -- fix the diagnostics for vim global variable
 vim.lsp.config("lua_ls", {
 	settings = {

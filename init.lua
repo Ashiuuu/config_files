@@ -7,7 +7,6 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.swapfile = false
 vim.o.clipboard = "unnamedplus"
---vim.o.ac = true
 
 vim.g.mapleader = " "
 
@@ -35,12 +34,17 @@ vim.pack.add({
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/nvim-mini/mini.pick",
 	"https://github.com/nvim-mini/mini.extra",
+	"https://github.com/nvim-mini/mini.icons",
+	"https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 })
 
 require("oil").setup()
 require("mason").setup()
 require("mini.pick").setup()
 require("mini.extra").setup()
+require("mini.icons").setup()
+require("render-markdown").setup()
 
 -- ============================
 -- Plugin keymaps

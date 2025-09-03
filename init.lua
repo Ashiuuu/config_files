@@ -46,6 +46,7 @@ require("mini.pick").setup()
 require("mini.extra").setup()
 require("mini.icons").setup()
 require("render-markdown").setup({ render_modes = true})
+require("crates").setup()
 
 -- ============================
 -- Plugin keymaps

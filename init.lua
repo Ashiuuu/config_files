@@ -44,7 +44,7 @@ require("mason").setup()
 require("mini.pick").setup()
 require("mini.extra").setup()
 require("mini.icons").setup()
-require("render-markdown").setup()
+require("render-markdown").setup({ render_modes = true})
 
 -- ============================
 -- Plugin keymaps

@@ -37,6 +37,7 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/tree-sitter-grammars/tree-sitter-markdown",
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	"https://github.com/Saecki/crates.nvim",
 })
 
 require("oil").setup()

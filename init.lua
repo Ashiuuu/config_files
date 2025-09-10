@@ -95,7 +95,7 @@ vim.keymap.set('n', '<leader>pf', ':Pick files<CR>')
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
-vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
+vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer", "basedpyright" })
 vim.lsp.inlay_hint.enable()
 
 -- lsp autocomplete

@@ -95,6 +95,8 @@ vim.keymap.set('n', '<leader>pf', ':Pick files<CR>')
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
+vim.lsp.config['rust_analyzer'] = { cmd = { "rustup", "run", "stable", "rust-analyzer" } }
+
 vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer", "basedpyright" })
 vim.lsp.inlay_hint.enable()
 

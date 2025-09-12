@@ -25,6 +25,7 @@ end)
 
 -- rust maps
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')
+vim.keymap.set('n', '<leader>cb', ':!cargo build<CR>')
 
 vim.pack.add({
 	"https://github.com/Mofiqul/vscode.nvim",

@@ -107,17 +107,21 @@ vim.keymap.set('n', '<leader>pf', ':Pick files<CR>')
 vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
+-- LSP config
 vim.lsp.config['rust_analyzer'] = { cmd = { "rustup", "run", "stable", "rust-analyzer" } }
 
-vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer", "basedpyright" })
+vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
 vim.lsp.inlay_hint.enable()
+vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 
 -- lsp autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
 		if client:supports_method('textDocument/completion') then
 			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+		else
+			print('No autocompletion')
 		end
 	end,
 })

@@ -1,5 +1,11 @@
 if vim.loop.os_uname().sysname == "Windows_NT" then
 	vim.o.shell = "powershell"
+	vim.o.shellquote = ""
+	vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+	vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+	vim.o.shellxquote = ""
+	vim.o.shellcmdflag = '-command'
+
 end
 
 vim.o.winborder = "rounded"

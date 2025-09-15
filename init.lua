@@ -11,6 +11,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.swapfile = false
 vim.o.clipboard = "unnamedplus"
+vim.o.splitright = true
 
 vim.g.mapleader = " "
 

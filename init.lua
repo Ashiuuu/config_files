@@ -1,3 +1,7 @@
+if vim.loop.os_uname().sysname == "Windows_NT" then
+	vim.o.shell = "pwsh"
+end
+
 vim.o.winborder = "rounded"
 vim.o.number = true
 vim.o.relativenumber = true

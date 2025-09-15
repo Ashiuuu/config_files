@@ -114,6 +114,15 @@ vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
 vim.lsp.inlay_hint.enable()
 vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 
+-- Show diagnostic popup on cursor hover
+vim.opt.updatetime = 500
+local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+   vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+})
+
 -- lsp autocomplete
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)

@@ -1,5 +1,5 @@
 if vim.loop.os_uname().sysname == "Windows_NT" then
-	vim.o.shell = "pwsh"
+	vim.o.shell = "powershell"
 end
 
 vim.o.winborder = "rounded"

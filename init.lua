@@ -17,6 +17,7 @@ vim.o.shiftwidth = 4
 vim.o.swapfile = false
 vim.o.clipboard = "unnamedplus"
 vim.o.splitright = true
+vim.o.completeopt = "menuone,noselect,popup"
 
 vim.g.mapleader = " "
 
@@ -134,7 +135,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 -- lsp autocomplete
-vim.o.completeopt = "menuone,noselect,popup"
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))

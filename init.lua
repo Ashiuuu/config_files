@@ -5,7 +5,6 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
 	vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
 	vim.o.shellxquote = ""
 	vim.o.shellcmdflag = '-command'
-
 end
 
 vim.o.winborder = "rounded"
@@ -57,7 +56,7 @@ require("mason").setup()
 require("mini.pick").setup()
 require("mini.extra").setup()
 require("mini.icons").setup()
-require("render-markdown").setup({ render_modes = true})
+require("render-markdown").setup({ render_modes = true })
 require("crates").setup()
 
 -- ============================
@@ -108,7 +107,18 @@ vim.o.background = 'light'
 vim.cmd("colorscheme vscode")
 
 -- LSP config
-vim.lsp.config['rust_analyzer'] = { cmd = { "rustup", "run", "stable", "rust-analyzer" } }
+vim.lsp.config['rust_analyzer'] = {
+	cmd = { "rustup", "run", "stable", "rust-analyzer" },
+	on_attach = function(client, bufnr)
+		vim.lsp.completion.enable(true, client.id, bufnr, {
+			autotrigger = true,
+			convert = function(item)
+				return { abbr = item.label:gsub("%b()", "") }
+			end,
+		})
+		vim.keymap.set("i", "<C-space>", vim.lsp.completion.get, { desc = "trigger autocompletion" })
+	end
+}
 
 vim.lsp.enable({ "lua_ls", "lemminx", "rust_analyzer" })
 vim.lsp.inlay_hint.enable()
@@ -118,12 +128,13 @@ vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 vim.opt.updatetime = 500
 local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-   vim.diagnostic.open_float(nil, { focusable = false })
-  end,
+	callback = function()
+		vim.diagnostic.open_float(nil, { focusable = false })
+	end,
 })
 
 -- lsp autocomplete
+vim.o.completeopt = "menuone,noselect,popup"
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(ev)
 		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
@@ -134,7 +145,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 	end,
 })
-vim.cmd("set completeopt+=noselect")
 
 -- inline diagnostics
 vim.diagnostic.config({ virtual_text = true })

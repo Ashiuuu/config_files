@@ -77,16 +77,10 @@ TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 export PATH="$PATH:$HOME/.local/bin/:/usr/sbin/"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
 
-if ! command -v nvim >/dev/null 2>&1 then
+if ! command -v nvim >/dev/null 2>&1 
+then
     echo "Nvim is not installed"
-else
-    export EDITOR=$(which nvim)
 fi
-
-# Node Version Manager (NVM)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Local environment profiles
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"

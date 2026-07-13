@@ -168,21 +168,30 @@ RPROMPT='%(?..%F{196}%? ⨯ %f)%(1j.%F{220}%j ⚙ %f.)%F{241}%*%f'
 # 8. EXTERNAL PLUGINS (Sourced last to prevent interference)
 # ==============================================================================
 # Auto-suggestions
-[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Syntax Highlighting
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-    ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=196,bold
-    ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=141,bold
-    ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=045,bold
-    ZSH_HIGHLIGHT_STYLES[path]=underline,fg=081
-    ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=221
-    ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=221
-    ZSH_HIGHLIGHT_STYLES[comment]=fg=242,italic
+if [ ! -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    echo "Installing zsh autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 fi
 
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Syntax Highlighting
+if [ ! -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    echo "Installing zsh syntax highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
+fi
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=196,bold
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=141,bold
+ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=045,bold
+ZSH_HIGHLIGHT_STYLES[path]=underline,fg=081
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=221
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=221
+ZSH_HIGHLIGHT_STYLES[comment]=fg=242,italic
+
+# Extra
 eval "$(zoxide init zsh --cmd cd)"
 source <(fzf --zsh)
 

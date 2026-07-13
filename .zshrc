@@ -167,6 +167,11 @@ RPROMPT='%(?..%F{196}%? ⨯ %f)%(1j.%F{220}%j ⚙ %f.)%F{241}%*%f'
 # ==============================================================================
 # 8. EXTERNAL PLUGINS (Sourced last to prevent interference)
 # ==============================================================================
+# Simple check
+if [ ! -d ~/.zsh ]; then
+    mkdir ~/.zsh
+fi
+
 # Auto-suggestions
 if [ ! -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     echo "Installing zsh autosuggestions"

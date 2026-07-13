@@ -30,6 +30,11 @@ bindkey '^[[Z' undo                               # shift + tab undo last action
 # ==============================================================================
 # 3. PIMPED COMPLETIONS & COLOURED MAN PAGES
 # ==============================================================================
+# Simple check
+if [ ! -d ~/.zsh ]; then
+    mkdir ~/.zsh
+fi
+
 autoload -Uz compinit
 compinit -d ~/.cache/zcompdump
 
@@ -56,7 +61,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 # ==============================================================================
 # 4. HISTORY CONFIGURATIONS
 # ==============================================================================
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zsh/zsh_history
 HISTSIZE=1000
 SAVEHIST=2000
 setopt hist_expire_dups_first 
@@ -167,11 +172,6 @@ RPROMPT='%(?..%F{196}%? ⨯ %f)%(1j.%F{220}%j ⚙ %f.)%F{241}%*%f'
 # ==============================================================================
 # 8. EXTERNAL PLUGINS (Sourced last to prevent interference)
 # ==============================================================================
-# Simple check
-if [ ! -d ~/.zsh ]; then
-    mkdir ~/.zsh
-fi
-
 # Auto-suggestions
 if [ ! -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     echo "Installing zsh autosuggestions"

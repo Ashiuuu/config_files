@@ -97,6 +97,19 @@ alias la='ls -Ah'
 alias l='ls -CFh'
 
 alias shcheck='shcheck.py'
+alias ls='eza'
+
+if ! command -v cargo >/dev/null 2>&1
+then
+    echo "[!] Cargo is not installed"
+else
+    if ! command -v bat cargo-update choose du-dust eza fd-find procs ripgrep topgrade zoxide >/dev/null 2>&1
+    then
+        echo "A command is not installed, ensure those are installed:"
+        echo "cargo install bat cargo-update choose du-dust eza fd-find procs ripgrep topgrade zoxide"
+    fi
+fi
+
 
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
@@ -169,3 +182,7 @@ if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=221
     ZSH_HIGHLIGHT_STYLES[comment]=fg=242,italic
 fi
+
+eval "$(zoxide init zsh --cmd cd)"
+source <(fzf --zsh)
+

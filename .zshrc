@@ -74,7 +74,7 @@ TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ==============================================================================
 # 5. ENVIRONMENT VARIABLES & PATHS
 # ==============================================================================
-export PATH="$PATH:$HOME/.local/bin/:/usr/sbin/:/usr/local/go/bin"
+export PATH="$PATH:$HOME/.local/bin/:/usr/sbin/"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
 export EDITOR=$(which nvim)
 

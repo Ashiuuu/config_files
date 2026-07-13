@@ -79,7 +79,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
 
 if ! command -v nvim >/dev/null 2>&1 
 then
-    echo "Nvim is not installed"
+    echo "[!] Nvim is not installed"
 fi
 
 # Local environment profiles
@@ -109,14 +109,20 @@ then
 else
     if ! command -v bat choose dust eza fd procs rg topgrade zoxide >/dev/null 2>&1
     then
-        echo "A command is not installed, ensure those are installed:"
-        echo "cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide"
+        echo "[!] A command is not installed, ensure those are installed:"
+        echo "[!] cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide"
+    fi
+    if command -v zoxide >/dev/null 2>&1 && ! command -v fzf >/dev/null 2>&1
+    then
+        echo "[!] Zoxide is installed but not fzf"
     fi
 fi
 
 
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
+else
+    echo "[!] Zsh command not found is not installed"
 fi
 
 function swap()
@@ -173,7 +179,7 @@ RPROMPT='%(?..%F{196}%? ⨯ %f)%(1j.%F{220}%j ⚙ %f.)%F{241}%*%f'
 # ==============================================================================
 # Auto-suggestions
 if [ ! -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    echo "Installing zsh autosuggestions"
+    echo "[!] Installing zsh autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 fi
 
@@ -181,7 +187,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax Highlighting
 if [ ! -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    echo "Installing zsh syntax highlighting"
+    echo "[!] Installing zsh syntax highlighting"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
 fi
 
@@ -196,6 +202,9 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=221
 ZSH_HIGHLIGHT_STYLES[comment]=fg=242,italic
 
 # Extra
-eval "$(zoxide init zsh --cmd cd)"
-source <(fzf --zsh)
+if command -v zoxide fzf >/dev/null 2>&1 
+then
+    eval "$(zoxide init zsh --cmd cd)"
+    source <(fzf --zsh)
+fi
 

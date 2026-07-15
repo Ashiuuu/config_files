@@ -33,6 +33,7 @@ vim.keymap.set('n', '<leader>pr', function()
 		end
 	end
 end)
+vim.keymap.set('n', 'Y', '0y$')
 
 -- rust maps
 vim.keymap.set('n', '<leader>cr', ':!cargo run<CR>')

@@ -53,6 +53,8 @@ vim.pack.add({
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 	"https://github.com/Saecki/crates.nvim",
 	"https://github.com/norcalli/nvim-colorizer.lua",
+	"https://github.com/HakonHarnes/img-clip.nvim",
+	"https://github.com/3rd/image.nvim",
 })
 
 require("oil").setup()
@@ -60,12 +62,22 @@ require("mason").setup()
 require("mini.pick").setup()
 require("mini.extra").setup()
 require("mini.icons").setup()
-require("render-markdown").setup({ render_modes = true })
+require("render-markdown").setup({ 
+	render_modes = true,
+	link = {
+		image = ''
+	}
+})
 require("crates").setup()
 require("colorizer").setup()
+require("img-clip").setup()
+require("image").setup()
+
 
 -- ============================
 -- Plugin keymaps
+-- Img-clio
+vim.keymap.set('n', '<leader>pip', ':PasteImage')
 
 -- Oil
 vim.keymap.set('n', '<leader>oo', ':Oil<CR>')

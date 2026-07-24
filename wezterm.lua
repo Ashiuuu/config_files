@@ -8,6 +8,8 @@ config.tab_bar_at_bottom = false
 config.color_scheme = 'Dracula'
 config.font = wezterm.font('Hack Nerd Font Mono')
 config.font_size = 10.0
+config.tab_max_width = 60
+
 
 
 -- Terminator Keybindings Migration
@@ -90,6 +92,7 @@ config.inactive_pane_hsb = {
   brightness = 0.5, -- Dim inactive panes to 50% brightness
 }
 
+
 --------------------------------------------------------------------------------
 -- 2. TERMINATOR TAB TITLE RENDERING & EXACT HEX PALETTE
 --------------------------------------------------------------------------------
@@ -134,5 +137,10 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     }
   end
 end)
+
+config.window_frame = {
+  font_size = 34.0, -- Adjust this number to make the tabs as big as you want
+}
+
 
 return config

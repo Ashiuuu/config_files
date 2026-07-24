@@ -77,7 +77,7 @@ require("image").setup()
 -- ============================
 -- Plugin keymaps
 -- Img-clio
-vim.keymap.set('n', '<leader>pip', ':PasteImage')
+vim.keymap.set('n', '<leader>pip', ':PasteImage<CR>')
 
 -- Oil
 vim.keymap.set('n', '<leader>oo', ':Oil<CR>')

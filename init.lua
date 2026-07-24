@@ -18,6 +18,7 @@ vim.o.swapfile = false
 vim.o.clipboard = "unnamedplus"
 vim.o.splitright = true
 vim.o.completeopt = "menuone,noselect,popup"
+vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 
@@ -51,6 +52,7 @@ vim.pack.add({
 	"https://github.com/tree-sitter-grammars/tree-sitter-markdown",
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
 	"https://github.com/Saecki/crates.nvim",
+	"https://github.com/norcalli/nvim-colorizer.lua",
 })
 
 require("oil").setup()
@@ -60,6 +62,7 @@ require("mini.extra").setup()
 require("mini.icons").setup()
 require("render-markdown").setup({ render_modes = true })
 require("crates").setup()
+require("colorizer").setup()
 
 -- ============================
 -- Plugin keymaps

@@ -107,10 +107,16 @@ if ! command -v cargo >/dev/null 2>&1
 then
     echo "[!] Cargo is not installed"
 else
-    if ! command -v bat choose dust eza fd procs rg topgrade zoxide >/dev/null 2>&1
+	#local COMMANDS=(bat choose dust eza fd procs rg topgrade zoxide)
+	#local MISSING_COMMANDS=( ${(f)"$(for c ($COMMANDS) command -v $c >/dev/null || echo $c)"} )
+	#if [ ! -z "$MISSING_COMMANDS" ]; then
+	#	echo "[!] Somme commands are missing, please install with:"
+	#	echo "    cargo install $MISSING_COMMANDS"
+	#fi
+    if ! command -v bat choose dust eza fd procs rg topgrade zoxide ouch >/dev/null 2>&1
     then
         echo "[!] A command is not installed, ensure those are installed:"
-        echo "[!] cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide"
+        echo "    cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch"
     fi
     if command -v zoxide >/dev/null 2>&1 && ! command -v fzf >/dev/null 2>&1
     then
@@ -123,6 +129,7 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 else
     echo "[!] Zsh command not found is not installed"
+	echo "    Install with the following command: sudo apt install command-not-found"
 fi
 
 function swap()

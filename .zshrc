@@ -107,17 +107,18 @@ if ! command -v cargo >/dev/null 2>&1
 then
     echo "[!] Cargo is not installed"
 else
-	#local COMMANDS=(bat choose dust eza fd procs rg topgrade zoxide)
-	#local MISSING_COMMANDS=( ${(f)"$(for c ($COMMANDS) command -v $c >/dev/null || echo $c)"} )
-	#if [ ! -z "$MISSING_COMMANDS" ]; then
-	#	echo "[!] Somme commands are missing, please install with:"
-	#	echo "    cargo install $MISSING_COMMANDS"
-	#fi
-    if ! command -v bat choose dust eza fd procs rg topgrade zoxide ouch >/dev/null 2>&1
-    then
-        echo "[!] A command is not installed, ensure those are installed:"
-        echo "    cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch"
-    fi
+	local PACKAGES=(bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch)
+	local INSTALLED=$(cargo install --list | grep ":")
+	local MISSING=$(for c in $PACKAGES; do echo "$INSTALLED" | grep -q "$c" || echo "$c"; done)
+	if [ ! -z "$MISSING" ]; then
+		echo "[!] Somme commands are missing, please install with:"
+		echo "    cargo install $(echo $MISSING | paste -sd ' ')"
+	fi
+    #if ! command -v bat choose dust eza fd procs rg topgrade zoxide ouch >/dev/null 2>&1
+    #then
+    #    echo "[!] A command is not installed, ensure those are installed:"
+    #    echo "    cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch"
+    #fi
     if command -v zoxide >/dev/null 2>&1 && ! command -v fzf >/dev/null 2>&1
     then
         echo "[!] Zoxide is installed but not fzf"

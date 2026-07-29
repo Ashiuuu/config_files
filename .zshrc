@@ -81,6 +81,15 @@ if ! command -v nvim >/dev/null 2>&1
 then
     echo "[!] Nvim is not installed"
 fi
+if ! command -v firefox >/dev/null 2>&1 
+then
+    echo "[!] Firefox is not installed"
+fi
+if ! command -v wezterm >/dev/null 2>&1 
+then
+    echo "[!] wezterm is not installed. It can be installed with:"
+	echo "    sudo apt install wezterm"
+fi
 
 # Local environment profiles
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"

@@ -105,7 +105,8 @@ alias ls='eza'
 
 if ! command -v cargo >/dev/null 2>&1
 then
-    echo "[!] Cargo is not installed"
+    echo "[!] Cargo is not installed. Install with:"
+	echo "	  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
 else
 	local PACKAGES=(bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch)
 	local INSTALLED=$(cargo install --list | grep ":")
@@ -196,7 +197,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax Highlighting
 if [ ! -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     echo "[!] Installing zsh syntax highlighting"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 fi
 
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

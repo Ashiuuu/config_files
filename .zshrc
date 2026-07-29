@@ -122,7 +122,8 @@ else
     #fi
     if command -v zoxide >/dev/null 2>&1 && ! command -v fzf >/dev/null 2>&1
     then
-        echo "[!] Zoxide is installed but not fzf"
+        echo "[!] Zoxide is installed but not fzf. Install with:"
+		echo "    sudo apt install fzf"
     fi
 fi
 

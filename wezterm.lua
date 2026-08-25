@@ -6,7 +6,7 @@ config.tab_bar_at_bottom = false
 
 -- Color scheme / font
 config.color_scheme = 'Dracula'
-config.font = wezterm.font('Hack Nerd Font Mono')
+config.font = wezterm.font_with_fallback('Hack Nerd Font Mono', 'Hack Font Mono')
 config.font_size = 10.0
 config.tab_max_width = 60
 

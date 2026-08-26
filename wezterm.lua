@@ -9,8 +9,7 @@ config.color_scheme = 'Dracula'
 config.font = wezterm.font_with_fallback { 'Hack Nerd Font Mono', 'Hack Font Mono' }
 config.font_size = 10.0
 config.tab_max_width = 60
-
-
+config.audible_bell = "Disabled"
 
 -- Terminator Keybindings Migration
 config.keys = {

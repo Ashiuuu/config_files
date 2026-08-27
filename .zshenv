@@ -10,7 +10,7 @@ typeset -U path PATH
 path=(
 	/usr/sbin
 	"$HOME/.local/bin"
-	"$HOME/.local/share/cargo"
+	"$CARGO_HOME/bin"
 	/usr/local/go/bin
 	$path
 )

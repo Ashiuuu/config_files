@@ -7,10 +7,10 @@ typeset -U path PATH
 
 path=(
 	/usr/sbin
-	/usr/local/go/bin
+	"$HOME/.local/bin"
 	$path
 )
 
-[[ -f "$CARGO_HOME/env" ]] && . "$CARGO_HOME/env"
-[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
+[[ -d "$HOME/.local/share/cargo" ]] && export CARGO_HOME="$HOME/.local/share/cargo" && path=("$CARGO_HOME/bin",$path)
+[[ -d "/usr/local/go/bin" ]] && path=(/usr/local/go/bin, $path)
 

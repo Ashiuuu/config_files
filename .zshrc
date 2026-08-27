@@ -97,6 +97,11 @@ then
 	echo "    sudo apt update"
 	echo "    sudo apt install wezterm"
 fi
+if ! command -v uv >/dev/null 2>&1
+then
+	echo "[!] uv is not installed. Please install with:"
+	echo "	  curl -LsSf https://astral.sh/uv/install.sh | sh"
+fi
 
 # ==============================================================================
 # 6. ALIASES & FUNCTIONS

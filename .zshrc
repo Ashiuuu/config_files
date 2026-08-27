@@ -1,3 +1,4 @@
+# TODO: add uv
 # ==============================================================================
 # 1. SYSTEM OPTION CONFIGURATIONS
 # ==============================================================================
@@ -74,25 +75,28 @@ TIMEFMT=$'real\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 # ==============================================================================
 # 5. ENVIRONMENT VARIABLES & PATHS
 # ==============================================================================
-export PATH="$PATH:$HOME/.local/bin/:/usr/sbin/"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib/"
-
 if ! command -v nvim >/dev/null 2>&1 
 then
-    echo "[!] Nvim is not installed"
+    echo "[!] Nvim is not installed. Install it through the github releases"
 fi
 if ! command -v firefox >/dev/null 2>&1 
 then
-    echo "[!] Firefox is not installed"
+    echo "[!] Firefox is not installed. It can be installed with:"
+	echo "    sudo install -d -m 0755 /etc/apt/keyrings"
+	echo "    wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null"
+	echo "    echo \"deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main\" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null"
+	echo "    sudo apt-get update"
+	echo "    sudo apt-get install firefox"
 fi
 if ! command -v wezterm >/dev/null 2>&1 
 then
     echo "[!] wezterm is not installed. It can be installed with:"
+	echo "	  curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg"
+	echo "    echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list"
+	echo "    sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg"
+	echo "    sudo apt update"
 	echo "    sudo apt install wezterm"
 fi
-
-# Local environment profiles
-[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # ==============================================================================
 # 6. ALIASES & FUNCTIONS
@@ -124,11 +128,6 @@ else
 		echo "[!] Somme commands are missing, please install with:"
 		echo "    cargo install $(echo $MISSING | paste -sd ' ')"
 	fi
-    #if ! command -v bat choose dust eza fd procs rg topgrade zoxide ouch >/dev/null 2>&1
-    #then
-    #    echo "[!] A command is not installed, ensure those are installed:"
-    #    echo "    cargo install bat choose du-dust eza fd-find procs ripgrep topgrade zoxide ouch"
-    #fi
     if command -v zoxide >/dev/null 2>&1 && ! command -v fzf >/dev/null 2>&1
     then
         echo "[!] Zoxide is installed but not fzf. Install with:"
@@ -227,3 +226,8 @@ then
     source <(fzf --zsh)
 fi
 
+[[ -d "$HOME/.cargo" ]] && echo "[!] Cargo is configured to store in HOME"
+[[ -d "$HOME/.rustup" ]] && echo "[!] Rustup is configured to store in HOME"
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -118,8 +118,10 @@ alias ll='ls -lh'
 alias la='ls -Ah'
 alias l='ls -CFh'
 
-alias shcheck='shcheck.py'
-alias ls='eza'
+if command -v eza >/dev/null 2>&1
+then
+	alias ls='eza'
+fi
 
 if ! command -v cargo >/dev/null 2>&1
 then
